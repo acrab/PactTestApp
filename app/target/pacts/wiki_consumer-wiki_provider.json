@@ -1,0 +1,57 @@
+{
+    "provider": {
+        "name": "wiki_provider"
+    },
+    "consumer": {
+        "name": "wiki_consumer"
+    },
+    "interactions": [
+        {
+            "description": "a data request",
+            "request": {
+                "method": "GET",
+                "path": "/w/api.php",
+                "query": {
+                    "action": [
+                        "query"
+                    ],
+                    "format": [
+                        "json"
+                    ],
+                    "list": [
+                        "search"
+                    ],
+                    "srsearch": [
+                        "TEST"
+                    ]
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                "body": {
+                    "query": {
+                        "searchinfo": {
+                            "totalhits": 234540
+                        }
+                    }
+                }
+            },
+            "providerStates": [
+                {
+                    "name": "app wants data"
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "pactSpecification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.6.0"
+        }
+    }
+}
