@@ -23,12 +23,23 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        beginSearch("Pact")
+        //beginSearch("Pact")
+        beginShout("Pact")
+    }
+
+    private fun beginShout(whisper: String) {
+        repository.toUpper(whisper)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result -> showResult(result.OUTPUT) },
+                { error -> showError(error.message) }
+            )
     }
 
     fun beginSearch(srsearch: String) {
-            repository.search(srsearch)
-                    .subscribeOn(Schedulers.io())
+        repository.search(srsearch)
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result -> showResult(result.query.searchinfo.totalhits) },
@@ -36,16 +47,20 @@ class MainActivity : DaggerAppCompatActivity() {
             )
     }
 
-    private fun showResult(result:Int)
-    {
+    private fun showResult(result: String) {
+        //Do something with result
+        Log.d("**Result**:", result)
+        findViewById<TextView>(R.id.text).text = result
+    }
+
+    private fun showResult(result: Int) {
         //Do something with result
         resultFromApi = result
         Log.d("**Result**:", result.toString())
-        findViewById<TextView>(R.id.text).text=result.toString()
+        findViewById<TextView>(R.id.text).text = result.toString()
     }
 
-    private fun showError(result:String?)
-    {
+    private fun showError(result: String?) {
         //Do something with result
         errorFromApi = result
         Log.d("**Error**:", result)

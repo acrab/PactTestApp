@@ -1,0 +1,68 @@
+{
+    "provider": {
+        "name": "shout_cloud"
+    },
+    "consumer": {
+        "name": "test_app"
+    },
+    "interactions": [
+        {
+            "description": "A lower case string",
+            "request": {
+                "method": "POST",
+                "path": "/V1/SHOUT",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "INPUT": "lower case"
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "APPLICATION/JSON"
+                },
+                "body": "{\"INPUT\":\"lower case\",\"OUTPUT\":\"UPPER CASE\"}"
+            },
+            "providerStates": [
+                {
+                    "name": "running"
+                }
+            ]
+        },
+        {
+            "description": "An upper case string",
+            "request": {
+                "method": "POST",
+                "path": "/V1/SHOUT",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "INPUT": "LOWER CASE"
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "APPLICATION/JSON"
+                },
+                "body": "{\"INPUT\":\"lower case\",\"OUTPUT\":\"UPPER CASE\"}"
+            },
+            "providerStates": [
+                {
+                    "name": "running"
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "pactSpecification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.6.0"
+        }
+    }
+}

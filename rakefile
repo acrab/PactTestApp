@@ -1,8 +1,15 @@
 require 'pact/provider/proxy/tasks'
 
-Pact::ProxyVerificationTask.new :monolith do | task |
+Pact::ProxyVerificationTask.new :wiki do | task |
  task.pact_url './app/target/pacts/wiki_consumer-wiki_provider.json', :pact_helper => './pact_helper.rb'
  task.provider_base_url 'https://en.wikipedia.org/' #scheme, host and optional port
+ task.provider_app_version '1.2.3'
+ task.publish_verification_results false
+end
+
+Pact::ProxyVerificationTask.new :shout do | task |
+ task.pact_url './app/target/pacts/test_app-shout_cloud.json', :pact_helper => './pact_helper.rb'
+ task.provider_base_url 'HTTP://API.SHOUTCLOUD.IO/' #scheme, host and optional port
  task.provider_app_version '1.2.3'
  task.publish_verification_results false
 end

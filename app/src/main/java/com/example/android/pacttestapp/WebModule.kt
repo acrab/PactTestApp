@@ -16,6 +16,10 @@ class WebModule
     @Singleton
     @Provides
     fun providesWikiApiService() = WikiApiService.create()
+
+    @Singleton
+    @Provides
+    fun providesShoutCloudService() = ShoutCloudService.create()
 }
 
 @Module
